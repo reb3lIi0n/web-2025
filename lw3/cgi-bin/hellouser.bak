@@ -1,0 +1,16 @@
+PROGRAM HelloUser(INPUT, OUTPUT);
+USES
+  DOS;
+VAR
+  PosName: INTEGER;
+  Name: STRING;
+BEGIN
+  WRITELN('Content-Type: text/plain');
+  WRITELN;
+  PosName := Pos('name=', GetEnv('QUERY_STRING'));
+  Name := Copy(GetEnv('QUERY_STRING'), 1, PosName - 1);
+  IF Name = ''
+  THEN
+    Name := 'Anonymous';
+  WRITELN('Hello dear', Name, '!')
+END.
