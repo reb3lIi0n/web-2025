@@ -9,8 +9,8 @@ VAR
 BEGIN
   WRITELN('Content-Type: text/plain');
   WRITELN;
-  QueryString := (GetEnv('QUERY_STRING') + '#');
-  PosName := Pos('#', QueryString);
+  QueryString := (GetEnv('QUERY_STRING') + ' ');
+  PosName := Pos(' ', QueryString);
   IsItName := Copy(QueryString, 1, 5);
   IF IsItName = 'name='
   THEN
