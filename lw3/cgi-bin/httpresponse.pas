@@ -1,7 +1,6 @@
 PROGRAM HttpResponse(INPUT, OUTPUT);
 USES
   DOS;
-
 BEGIN
   WRITELN('Content-Type: text/plain');
   WRITELN;

@@ -1,8 +1,6 @@
 PROGRAM HelloUser(INPUT, OUTPUT);
-
 USES
   DOS;
-
 VAR
   QueryString, Name, IsItName: STRING;
   PosName: INTEGER;
