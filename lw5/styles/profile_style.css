@@ -1,21 +1,24 @@
-.profile-image{
+.profile-image {
     border-radius: 16px;
     width: 123px;
     height: 123px;
 }
-h1{
+
+h1 {
     color: #222222;
     font-family: "Golos-ui", "Arial";
     font-size: 32px;
     font-weight: bold;
 }
-.profile-description{
+
+.profile-description {
     color: #222222;
     max-width: 361px;
     font-family: "Golos-ui", "Arial";
     font-size: 15px;
 }
-.post-count{
+
+.post-count {
     color: #222222;
     font-size: 15px;
     text-align: center;
