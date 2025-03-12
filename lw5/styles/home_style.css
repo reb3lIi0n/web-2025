@@ -1,0 +1,41 @@
+.main-text{
+    font-family: "Golos-ui", "Arial";
+    color: black;
+    font-size: 15px;
+    max-width: 474px;
+}
+a{
+    font-family: "Golos-ui", "Arial";
+    font-size: 15px;
+    text-decoration: none;
+    color: black;
+}
+.user-image{
+    border-radius: 6px;
+}
+.text-more{
+    font-size: 15px;
+    color: #666;
+}
+.post-time{
+    font-size: 14px;
+    color: #666;
+}
+.likes-count{
+    color: #000000;
+    font-size: 15px;
+    text-align: center;
+    background-color: #222222;
+    border-radius: 8px;
+    max-width: 68px;
+    height: 30px;
+}
+.images-count{
+    color: #FFFFFF;
+    font-size: 15px;
+    text-align: center;
+    background-color: #222222;
+    border-radius: 20px;
+    max-width: 44px;
+    height: 24px;
+}
