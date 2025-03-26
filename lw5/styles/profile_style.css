@@ -4,9 +4,9 @@
     height: 123px;
 }
 
-h1 {
+.title {
     color: #222222;
-    font-family: "Golos-ui", "Arial";
+    font-family: "Golos Text", sans-serif;
     font-size: 32px;
     font-weight: bold;
 }
@@ -14,7 +14,7 @@ h1 {
 .profile-description {
     color: #222222;
     max-width: 361px;
-    font-family: "Golos-ui", "Arial";
+    font-family: "Golos Text", sans-serif;
     font-size: 15px;
 }
 
@@ -22,9 +22,13 @@ h1 {
     color: #222222;
     font-size: 15px;
     text-align: center;
-    font-family: "Golos-ui", "Arial";
+    font-family: "Golos Text", sans-serif;
     background-color: #F2F3F5;
     border-radius: 6px;
     max-width: 100px;
     height: 30px;
+}
+
+.profile-unit {
+    max-width: 982px;
 }

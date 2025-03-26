@@ -4,35 +4,32 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Login</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
         <link href="styles/login_style.css" rel="stylesheet">
     </head>
     <body>
         <div>
-            <h1>Войти</h1>
-            <img src = "/login_img/login_img.png" height="501" width="462" alt="login img">
-            <form class="form">
-                <input type="email" class="input" />
-                <input type="submit" class="input" />
-            </form>
+            <h1 class="title">Войти</h1>
+            <img src = "login_img/login_img.png" height="501" width="462" alt="login img">
         </div>
         <main>
-            <div class="input-field">
+            <form class="input-field">
                 <div>
-                    <p>Электропочта</p>
-                    <input type="text" id="email" name="login">
+                    <label class="title-input" for="email">Электропочта</label>
+                    <input id="email" type="text" class="input" name="email" required />
                     <!--Переделань на p-->
                     <p class="input-description">Введите электронную почту в формате *****@***.**</p>
                 </div>
                 <div>
-                    <p>Пароль</p>        
-                    <input type="password" id="password" name="password">
+                    <label class="title-input" for="password">Пароль</label>        
+                    <input type="password" id="password" class="input" name="password">
                     <img src = "icons/eye-off.png" height="24" width="24" alt="eye off">
                 </div>
-                <div class="submit">
                         <!--заменить button на a -->
-                    <p><button type="submit">Продолжить</button></p>
-                </div>
-            </div>
+                <input type="submit" class="button" />
+            </form>
         </main>
     </body>
 </html>

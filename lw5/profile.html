@@ -4,28 +4,34 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Profile</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
         <link href="styles/profile_style.css" rel="stylesheet">
     </head>
     <body>
         <div>
-            <a href="home.html"><img src="/icons/home.png" height="24" width="24" alt="home"></a>
-            <a href="profile.html"><img src="/icons/profile.png" height="24" width="24" alt="profile"></a>
-            <a href="#"><img src="/icons/new_post.png" height="24" width="24" alt="new post"></a>
+            <a href="home.html"><img src="icons/home.png" height="24" width="24" alt="home"></a>
+            <a href="profile.html"><img src="icons/profile.png" height="24" width="24" alt="profile"></a>
+            <a href="#"><img src="icons/new_post.png" height="24" width="24" alt="new post"></a>
         </div>
-        <div>
+        <div class="profile-unit">
             <div>
-                <img src="/users_img/vanya.png" class="profile-image" alt="user image">
-                <h1>Ваня Денисов</h1>
+                <img src="users_img/vanya.png" class="profile-image" alt="user image">
+                <h1 class="title">Ваня Денисов</h1>
                 <p class="profile-description">Привет! Я системный аналитик в ACME :) Тут моя жизнь только для самых классных!</p>
-                <p class="post-count">43 поста</p>
+                <div class="post-count">
+                    <img src="icons/images_count.png" height="16" width="16" alt="images count">
+                    <span>43 поста</span>
+                </div>   
             </div>
-            <div class="images">
-                <img src="/profile_images/image0.png" height="322" width="322" alt="snow">
-                <img src="/profile_images/image1.png" height="322" width="322" alt="building">
-                <img src="/profile_images/image2.png" height="322" width="322" alt="cake">
-                <img src="/profile_images/image3.png" height="322" width="322" alt="peaple">
-                <img src="/profile_images/image4.png" height="322" width="322" alt="coffee">
-                <img src="/profile_images/image5.png" height="322" width="322" alt="book">
+            <div>
+                <img src="profile_images/image0.png" height="322" width="322" alt="snow">
+                <img src="profile_images/image1.png" height="322" width="322" alt="building">
+                <img src="profile_images/image2.png" height="322" width="322" alt="cake">
+                <img src="profile_images/image3.png" height="322" width="322" alt="peaple">
+                <img src="profile_images/image4.png" height="322" width="322" alt="coffee">
+                <img src="profile_images/image5.png" height="322" width="322" alt="book">
             </div>
         </div>
     </body>

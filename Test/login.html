@@ -8,15 +8,15 @@
     </head>
     <body>
         <div>
-            <h1>Войти</h1>
-            <img src = "/login_img/login_img.png" height="501" width="462" alt="login img">
+            <h1 class="title">Войти</h1>
+            <img src = "/login_img/login_img.png" title="Войти" height="501" width="462" alt="login img">
             <form class="form">
-                <label for="email">Электропочта</label>
-                <input type="email" class="input" />
+                <label class="label" for="email">Электропочта</label>
+                <input if="email" type="email" class="input input-error" />
                 <span>Введите электронную почту в формате *****@***.**</span>
-                <label for="password">Пароль</label>
-                <input type="password" class="input" />
-                <input type="submit" class="input" />
+                <label class="label" for="password">Пароль</label>
+                <input id="password" type="password" class="input" />
+                <input type="submit" class="button" />
             </form>
         </div>
     </body>
