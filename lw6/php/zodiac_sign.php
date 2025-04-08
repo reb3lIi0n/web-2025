@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Знаки зодиака</title>
-</head>
-<body>
-    <form action="" method="post">
-        <label for="date">Введите дату:</label>
-        <input type="text" id="date" name="date" required>
-        <button type="submit">Продолжить</button>
-    </form>
-</body>
-</html>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function getZodiacSign($date) {

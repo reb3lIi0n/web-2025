@@ -1,19 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Счастливый билет</title>
-</head>
-<body>
-    <form action="" method="post">
-        <label for="first-number">Введите первое число:</label>
-        <input type="number" id="first-number" name="first-number" required>
-        <label for="second-number">Введите второе число:</label>
-        <input type="number" id="second-number" name="second-number" required>
-        <button type="submit">Продолжить</button>
-    </form>
-</body>
-</html>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function isLuckyTicket($ticket) {
@@ -34,4 +18,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     echo implode("\n", $luckyTickets);
 }
+//обработать все кейсы в том числе одинаковый ввод
 ?>

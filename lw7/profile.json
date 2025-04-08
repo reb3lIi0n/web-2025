@@ -1,0 +1,16 @@
+[
+    {
+        "title":"Ваня Денисов",
+        "profile_image":"users_img/vanya.png",
+        "profile_description":"Привет! Я системный аналитик в ACME :) Тут моя жизнь только для самых классных!",
+        "post_count":43,
+        "images":{
+            "image0":"profile_images/image0.png",
+            "image1":"profile_images/image1.png",
+            "image2":"profile_images/image2.png",
+            "image3":"profile_images/image3.png",
+            "image4":"profile_images/image4.png",
+            "image5":"profile_images/image5.png"
+        }
+    }
+]

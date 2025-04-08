@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Переводчик</title>
-</head>
-<body>
-    <form action="" method="post">
-        <label for="digit">Введите цифру:</label>
-        <input type="number" id="digit" name="digit" required>
-        <button type="submit">Перевести</button>
-    </form>
-</body>
-</html>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $words = [

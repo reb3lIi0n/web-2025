@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Обратная польская запись</title>
-</head>
-<body>
-    <form action="" method="post">
-        <label for="input">Введите выражение:</label>
-        <input type="text" id="input" name="input" required>
-        <button type="submit">Продолжить</button>
-    </form>
-</body>
-</html>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function evaluatePostfix($expression) {
@@ -40,4 +26,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     echo evaluatePostfix((string) $_POST["input"]);
 }
+// обработать один символ
 ?>

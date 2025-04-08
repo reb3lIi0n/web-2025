@@ -1,0 +1,21 @@
+[
+    {
+        "id":1,
+        "images":"images/image0.png",
+        "image_count":"1/3",
+        "edit": "icons/edit.png",
+        "title":"Так красиво сегодня на улице! Настоящая зима)) Вспоминается Бродский: «Поздно ночью, в уснувшей долине, на самом дне, в городке, занесенном снегом по ручку двери...",
+        "user_id":1,
+        "users_img":"users_img/vanya.png",
+        "likes_count":203,
+        "created_at": 1743525660
+    },
+    {
+        "id":2,
+        "images":"images/image1.png",
+        "likes_count":"534",
+        "user_id":2,
+        "users_img":"users_img/liza.png",
+        "created_at": 1743352860
+    }
+]

@@ -1,0 +1,49 @@
+.main-text {
+    font-family: "Golos Text", sans-serif;
+    color: #000000;
+    font-size: 15px;
+    max-width: 474px;
+}
+
+.profile-name {
+    font-family: "Golos Text", sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.user-image {
+    border-radius: 6px;
+}
+
+.text-more {
+    font-family: "Golos Text", sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    color: #666666;
+}
+
+.post-time {
+    font-size: 14px;
+    color: #666666;
+}
+
+.likes-count {
+    padding: 3px;
+    font-size: 15px;
+    text-align: center;
+    background-color: #F2F3F5;
+    border-radius: 8px;
+    max-width: 68px;
+    height: 30px;
+}
+
+.images-count {
+    padding: 3px;
+    font-size: 15px;
+    text-align: center;
+    background-color: #F2F3F5;
+    border-radius: 20px;
+    max-width: 44px;
+    height: 24px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
+        <link href="styles/login_style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div>
+            <h1 class="title">Войти</h1>
+            <img src = "login_img/login_img.png" height="501" width="462" alt="login img">
+        </div>
+        <main>
+            <form class="input-field">
+                <div>
+                    <label class="title-input" for="email">Электропочта</label>
+                    <input id="email" type="text" class="input" name="email" required />
+                    <!--Переделань на p-->
+                    <p class="input-description">Введите электронную почту в формате *****@***.**</p>
+                </div>
+                <div>
+                    <label class="title-input" for="password">Пароль</label>        
+                    <input type="password" id="password" class="input" name="password">
+                    <img src = "icons/eye-off.png" height="24" width="24" alt="eye off">
+                </div>
+                        <!--заменить button на a -->
+                <input type="submit" class="button" />
+            </form>
+        </main>
+    </body>
+</html>
