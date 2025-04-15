@@ -1,11 +1,28 @@
 <?php
 include('validation.php');
-$postData = file_get_contents('post.json');
-$userData = file_get_contents('users.json');
-$posts = json_decode($postData, true);
-$users = json_decode($userData, true);
+
+// Подключение к базе данных
+require_once 'config/db.php';  // подключаем конфиг с PDO
+
+// Получаем данные о пользователях из базы данных
+$sqlUsers = "SELECT id, name FROM user";  // столбец 'users_img'
+$stmt = $pdo->query($sqlUsers);
+$users = $stmt->fetchAll();
+
+// Получаем данные о постах из базы данных
+$sqlPosts = "
+    SELECT p.id, p.images, p.image_count, p.edit, p.title, p.likes_count, p.created_at, p.user_id, p.users_img 
+    FROM post p
+    JOIN user u ON p.user_id = u.id
+    ORDER BY p.created_at DESC
+";
+$stmt = $pdo->query($sqlPosts);
+$posts = $stmt->fetchAll();
+
+// Создаем ассоциативный массив с пользователями
 $userMap = [];
 foreach ($users as $user) {
+    // Валидация для каждого пользователя
     if (!validateStringLength($user['name'], 3, 50)) {
         echo "Ошибка: Имя пользователя '{$user['name']}' слишком короткое или длинное.\n";
         continue;
@@ -14,7 +31,11 @@ foreach ($users as $user) {
         echo "Ошибка: ID пользователя '{$user['id']}' должен быть целым числом.\n";
         continue;
     }
+    // Создаем отображение пользователя по ID
+    $userMap[$user['id']] = $user['name'];
 }
+
+// Валидация данных постов
 foreach ($posts as $post) {
     if (!validateType($post['likes_count'], 'int')) {
         echo "Ошибка: Количество лайков должно быть целым числом.\n";
@@ -25,9 +46,8 @@ foreach ($posts as $post) {
         continue;
     }
 }
-foreach ($users as $user) {
-    $userMap[$user['id']] = $user['name'];
-}
+
+// Функция для времени
 function timeAgo($timestamp) {
     $timeDiff = time() - $timestamp;
     if ($timeDiff < 60) {
@@ -43,6 +63,8 @@ function timeAgo($timestamp) {
         return "$days " . pluralForm($days, "день", "дня", "дней") . " назад";
     }
 }
+
+// Функция для правильной формы слов
 function pluralForm($number, $form1, $form2, $form5) {
     $n = abs($number) % 100;
     $n1 = $n % 10;
