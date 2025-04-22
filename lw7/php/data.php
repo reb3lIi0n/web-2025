@@ -1,15 +1,10 @@
 <?php
 include('validation.php');
-
-// Подключение к базе данных
-require_once 'config/db.php';  // подключаем конфиг с PDO
-
-// Получаем данные о пользователях из базы данных
-$sqlUsers = "SELECT id, name FROM user";  // столбец 'users_img'
+require_once 'config/db.php';
+$sqlUsers = "SELECT id, name FROM user";
 $stmt = $pdo->query($sqlUsers);
 $users = $stmt->fetchAll();
 
-// Получаем данные о постах из базы данных
 $sqlPosts = "
     SELECT p.id, p.images, p.image_count, p.edit, p.title, p.likes_count, p.created_at, p.user_id, p.users_img 
     FROM post p
@@ -19,10 +14,8 @@ $sqlPosts = "
 $stmt = $pdo->query($sqlPosts);
 $posts = $stmt->fetchAll();
 
-// Создаем ассоциативный массив с пользователями
 $userMap = [];
 foreach ($users as $user) {
-    // Валидация для каждого пользователя
     if (!validateStringLength($user['name'], 3, 50)) {
         echo "Ошибка: Имя пользователя '{$user['name']}' слишком короткое или длинное.\n";
         continue;
@@ -31,11 +24,9 @@ foreach ($users as $user) {
         echo "Ошибка: ID пользователя '{$user['id']}' должен быть целым числом.\n";
         continue;
     }
-    // Создаем отображение пользователя по ID
     $userMap[$user['id']] = $user['name'];
 }
 
-// Валидация данных постов
 foreach ($posts as $post) {
     if (!validateType($post['likes_count'], 'int')) {
         echo "Ошибка: Количество лайков должно быть целым числом.\n";
@@ -47,7 +38,6 @@ foreach ($posts as $post) {
     }
 }
 
-// Функция для времени
 function timeAgo($timestamp) {
     $timeDiff = time() - $timestamp;
     if ($timeDiff < 60) {
@@ -64,7 +54,6 @@ function timeAgo($timestamp) {
     }
 }
 
-// Функция для правильной формы слов
 function pluralForm($number, $form1, $form2, $form5) {
     $n = abs($number) % 100;
     $n1 = $n % 10;

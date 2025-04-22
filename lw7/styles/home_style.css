@@ -1,49 +1,113 @@
+.page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+.sidebar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 10;
+}
+
 .main-text {
     font-family: "Golos Text", sans-serif;
-    color: #000000;
+    color: #000;
     font-size: 15px;
     max-width: 474px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
+/* Контейнер поста */
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 0;
+}
+
+/* Шапка поста: аватар + имя */
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Левая часть шапки */
+.post-header__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Имя пользователя */
 .profile-name {
-    font-family: "Golos Text", sans-serif;
     font-size: 15px;
+    font-weight: 600;
+    color: #333333;
     text-decoration: none;
+}
+
+/* Кнопка редактирования */
+.edit {
+    margin-left: auto;
+}
+
+/* Контейнер изображения */
+.post-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+/* Счётчик изображений */
+.images-count {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #F2F3F5;
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+}
+.post-text {
+    font-size: 15px;
+    line-height: 1.4;
     color: #000000;
+    margin: 4px 0;
 }
-
-.user-image {
-    border-radius: 6px;
-}
-
 .text-more {
-    font-family: "Golos Text", sans-serif;
     font-size: 15px;
-    text-decoration: none;
     color: #666666;
+    text-decoration: none;
 }
-
 .post-time {
     font-size: 14px;
     color: #666666;
+    margin-top: 6px;
 }
-
 .likes-count {
-    padding: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 15px;
-    text-align: center;
+    padding: 4px 10px;
     background-color: #F2F3F5;
     border-radius: 8px;
-    max-width: 68px;
-    height: 30px;
+    max-width: fit-content;
+    margin-top: 6px;
 }
-
-.images-count {
-    padding: 3px;
-    font-size: 15px;
-    text-align: center;
-    background-color: #F2F3F5;
-    border-radius: 20px;
-    max-width: 44px;
-    height: 24px;
+.user-image {
+    border-radius: 15%;
+    object-fit: cover;
 }

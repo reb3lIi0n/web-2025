@@ -1,9 +1,3 @@
-<?php
-$profileData = include('php/profile_data.php');
-$user = $profileData['user'];
-$profile = $profileData['profile'];
-?>
-
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -16,26 +10,11 @@ $profile = $profileData['profile'];
         <link href="styles/profile_style.css" rel="stylesheet">
     </head>
     <body>
-        <div>
+        <div class="sidebar">
             <a href="home.php"><img src="icons/home.png" height="24" width="24" alt="home"></a>
-            <a href="profile.php?id=<?= $user['id'] ?>"><img src="icons/profile.png" height="24" width="24" alt="profile"></a>
+            <a href="profile.php?id=1"><img src="icons/profile.png" height="24" width="24" alt="profile"></a>
             <a href="#"><img src="icons/new_post.png" height="24" width="24" alt="new post"></a>
         </div>
-        <div class="profile-unit">
-            <div>
-                <img src="<?= $profile['profile_image'] ?>" class="profile-image" alt="user image">
-                <h1 class="title"><?= $profile['title'] ?></h1>
-                <p class="profile-description"><?= $profile['profile_description'] ?></p>
-                <div class="post-count">
-                    <img src="icons/images_count.png" height="16" width="16" alt="images count">
-                    <span><?= $profile['post_count'] ?> поста</span>
-                </div>   
-            </div>
-            <div>
-                <?php foreach ($profile['images'] as $image): ?>
-                    <img src="<?= $image ?>" height="322" width="322" alt="image">
-                <?php endforeach; ?>
-            </div>
-        </div>
+        <?php include 'templates/profile_template.php'; ?>
     </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
 $db   = 'blog';
-$user = 'root';         // измените при необходимости
-$pass = '';             // добавьте пароль, если он есть
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
