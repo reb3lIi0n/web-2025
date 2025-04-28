@@ -1,73 +1,146 @@
 <?php
-$host = 'localhost';
-$db   = 'blog';
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
+header('Content-Type: application/json');
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+require_once 'config/db.php'; // Assuming this sets up $pdo
+require_once 'validation.php';
 
-$options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, 
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Разрешены только POST запросы.']);
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    if (!isset($data['title']) || !isset($data['image'])) {
-        echo json_encode(['error' => 'Missing required fields: title, images, or user_id.']);
+$uploadDir = __DIR__ . '/images/';
+if (!is_dir($uploadDir)) {
+    mkdir($uploadDir, 0777, true);
+}
+
+// Get JSON data from request body or POST
+$postDataJsonString = $_POST['post_data_json'] ?? null;
+$requestBody = file_get_contents('php://input');
+$data = null;
+
+if ($postDataJsonString !== null) {
+    $data = json_decode($postDataJsonString, true);
+} elseif (!empty($requestBody)) {
+    $data = json_decode($requestBody, true);
+}
+
+$imageFile = $_FILES['image'] ?? null;
+
+if ($data === null || !is_array($data)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Некорректные или отсутствуют JSON данные поста.']);
+    exit;
+}
+
+// Extract data with your field names
+$userId = $data['user_id'] ?? null;
+$title = $data['title'] ?? null;
+$imageCount = $data['image_count'] ?? null;
+$edit = $data['edit'] ?? null;
+$likesCount = $data['likes_count'] ?? 0;
+
+// Validate required fields
+if ($userId === null || $title === null) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Отсутствуют обязательные поля: user_id или title.']);
+    exit;
+}
+
+// Validate user_id using your validation.php
+if (!validateType($userId, 'int') || $userId <= 0) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Некорректный или отсутствующий user_id.']);
+    exit;
+}
+
+// Check if user exists
+try {
+    $stmt = $pdo->prepare("SELECT id FROM user WHERE id = :id");
+    $stmt->execute([':id' => $userId]);
+    if ($stmt->rowCount() === 0) {
+        http_response_code(404);
+        echo json_encode(['success' => false, 'message' => 'Пользователь с указанным user_id не найден.']);
         exit;
     }
-    $title = $data['title'];
-    $images = $data['images'];
-    $image_count = isset($data['image_count']) ? $data['image_count'] : null;
-    $edit = isset($data['edit']) ? $data['edit'] : null;
-    $user_id = $data['user_id'];
-    $users_img = isset($data['users_img']) ? $data['users_img'] : null;
-    $likes_count = isset($data['likes_count']) ? $data['likes_count'] : 0;
-    $created_at = time();
-    if (isset($_FILES['image'])) {
-        $imageTmp = $_FILES['image']['tmp_name'];
-        $imageName = basename($_FILES['image']['name']);
-        $imagePath = 'images/' . $imageName;
+} catch (PDOException $e) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Ошибка базы данных: ' . $e->getMessage()]);
+    exit;
+}
 
-        if (move_uploaded_file($imageTmp, $imagePath)) {
-            $images = $imagePath;
-        } else {
-            echo json_encode(['error' => 'Failed to upload image.']);
-            exit;
-        }
-    }
+// Validate title using your validation.php
+if (!validateStringLength($title, 3, 255)) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Title должен быть длиной от 3 до 255 символов.']);
+    exit;
+}
 
-    $query = "INSERT INTO post (title, images, image_count, edit, user_id, users_img, likes_count, created_at)
-              VALUES (:title, :images, :image_count, :edit, :user_id, :users_img, :likes_count, :created_at)";
-    
-    $stmt = $pdo->prepare($query);
-    try {
-        $stmt->execute([
-            ':title' => $title,
-            ':images' => $images,
-            ':image_count' => $image_count,
-            ':edit' => $edit,
-            ':user_id' => $user_id,
-            ':users_img' => $users_img,
-            ':likes_count' => $likes_count,
-            ':created_at' => $created_at,
-        ]);
-        echo json_encode(['message' => 'Post successfully created!']);
-    } catch (\PDOException $e) {
-        echo json_encode(['error' => 'Failed to insert post: ' . $e->getMessage()]);
-    }
-} else {
-    echo json_encode(['error' => 'Invalid request method.']);
+// Handle image upload
+if (empty($imageFile) || $imageFile['error'] !== UPLOAD_ERR_OK) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Ошибка загрузки изображения или изображение отсутствует.']);
+    exit;
+}
+
+$allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+$finfo = new finfo(FILEINFO_MIME_TYPE);
+$mimeType = $finfo->file($imageFile['tmp_name']);
+
+if (!in_array($mimeType, $allowedTypes)) {
+    @unlink($imageFile['tmp_name']);
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Недопустимый тип файла изображения. Разрешены: JPEG, PNG, GIF.']);
+    exit;
+}
+
+$maxFileSize = 5 * 1024 * 1024; // 5MB
+if ($imageFile['size'] > $maxFileSize) {
+    @unlink($imageFile['tmp_name']);
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Размер файла изображения превышает допустимый лимит (5MB).']);
+    exit;
+}
+
+$imageFileName = uniqid('post_') . '_' . basename($imageFile['name']);
+$uploadFilePath = $uploadDir . $imageFileName;
+
+if (!move_uploaded_file($imageFile['tmp_name'], $uploadFilePath)) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Не удалось сохранить загруженное изображение.']);
+    exit;
+}
+
+$imagePathForDb = './images/' . $imageFileName;
+
+// Insert into database
+try {
+    $stmt = $pdo->prepare("
+        INSERT INTO post (user_id, images, title, image_count, edit, likes_count, created_at)
+        VALUES (:user_id, :images, :title, :image_count, :edit, :likes_count, :created_at)
+    ");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':images' => $imagePathForDb,
+        ':title' => $title,
+        ':image_count' => $imageCount,
+        ':edit' => $edit,
+        ':likes_count' => $likesCount,
+        ':created_at' => time()
+    ]);
+
+    $newPostId = $pdo->lastInsertId();
+    http_response_code(201);
+    echo json_encode([
+        'success' => true,
+        'message' => 'Пост успешно создан.',
+        'postId' => $newPostId,
+        'imagePath' => $imagePathForDb
+    ]);
+} catch (PDOException $e) {
+    @unlink($uploadFilePath);
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Ошибка при добавлении поста в базу данных: ' . $e->getMessage()]);
 }
 ?>

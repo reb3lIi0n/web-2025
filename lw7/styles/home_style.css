@@ -25,50 +25,36 @@
     flex-direction: column;
     gap: 8px;
 }
-
-/* Контейнер поста */
 .post {
     display: flex;
     flex-direction: column;
     gap: 6px;
     padding: 12px 0;
 }
-
-/* Шапка поста: аватар + имя */
 .post-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-/* Левая часть шапки */
 .post-header__left {
     display: flex;
     align-items: center;
     gap: 8px;
 }
-
-/* Имя пользователя */
 .profile-name {
     font-size: 15px;
     font-weight: 600;
     color: #333333;
     text-decoration: none;
 }
-
-/* Кнопка редактирования */
 .edit {
     margin-left: auto;
 }
-
-/* Контейнер изображения */
 .post-image {
     position: relative;
     width: 100%;
     height: auto;
 }
-
-/* Счётчик изображений */
 .images-count {
     position: absolute;
     top: 8px;

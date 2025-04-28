@@ -13,7 +13,6 @@
             </div>
         <?php endif; ?>
     </div>
-
     <div class="post-image">
         <?php if (!empty($post['image_count'])): ?>
             <div class="images-count">
@@ -25,8 +24,7 @@
 
     <p class="likes-count">
         <img src="icons/like.png" height="16" width="18" alt="like"> <?= $post['likes_count'] ?>
-    </p>
-
+        </p>
     <?php if (!empty($post['title'])): ?>
         <p class="post-text"><?= $post['title'] ?></p>
         <a class="text-more" href="#">ещё</a>
