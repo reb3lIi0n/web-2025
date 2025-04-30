@@ -6,10 +6,9 @@ $stmt = $pdo->query($sqlUsers);
 $users = $stmt->fetchAll();
 
 $sqlPosts = "
-    SELECT p.id, p.images, p.image_count, p.edit, p.title, p.likes_count, p.created_at, p.user_id, p.users_img 
+    SELECT p.id, p.images, p.image_count, p.edit, p.title, p.likes_count, p.created_at, p.user_id, u.profile_image 
     FROM post p
     JOIN user u ON p.user_id = u.id
-    ORDER BY p.created_at DESC
 ";
 $stmt = $pdo->query($sqlPosts);
 $posts = $stmt->fetchAll();

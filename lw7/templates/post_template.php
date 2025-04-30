@@ -1,7 +1,7 @@
 <div class="post">
     <div class="post-header">
         <div class="post-header__left">
-            <img src="<?= $post['users_img'] ?>" class="user-image" height="32" width="32" alt="User Image">
+        <img src="<?= $post['profile_image']?>" class="user-image" height="32" width="32" alt="User Image">
             <a class="profile-name" href="profile.php?id=<?= $post['user_id'] ?>">
                 <?= $userMap[$post['user_id']] ?? 'Неизвестный пользователь' ?>
             </a>

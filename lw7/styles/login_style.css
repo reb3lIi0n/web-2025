@@ -17,10 +17,6 @@
 }
 .login__aside {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
 }
 .login__title {
     position: absolute;
@@ -31,7 +27,6 @@
     margin: 0;
 }
 .login__image {
-    display: flex;
     max-width: 100%;
     height: auto;
 }

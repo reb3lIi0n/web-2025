@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-require_once 'config/db.php'; // Assuming this sets up $pdo
+require_once 'config/db.php';
 require_once 'validation.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -15,7 +15,6 @@ if (!is_dir($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
-// Get JSON data from request body or POST
 $postDataJsonString = $_POST['post_data_json'] ?? null;
 $requestBody = file_get_contents('php://input');
 $data = null;
@@ -33,29 +32,21 @@ if ($data === null || !is_array($data)) {
     echo json_encode(['success' => false, 'message' => 'Некорректные или отсутствуют JSON данные поста.']);
     exit;
 }
-
-// Extract data with your field names
 $userId = $data['user_id'] ?? null;
 $title = $data['title'] ?? null;
 $imageCount = $data['image_count'] ?? null;
 $edit = $data['edit'] ?? null;
 $likesCount = $data['likes_count'] ?? 0;
-
-// Validate required fields
 if ($userId === null || $title === null) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Отсутствуют обязательные поля: user_id или title.']);
     exit;
 }
-
-// Validate user_id using your validation.php
 if (!validateType($userId, 'int') || $userId <= 0) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Некорректный или отсутствующий user_id.']);
     exit;
 }
-
-// Check if user exists
 try {
     $stmt = $pdo->prepare("SELECT id FROM user WHERE id = :id");
     $stmt->execute([':id' => $userId]);
@@ -69,15 +60,12 @@ try {
     echo json_encode(['success' => false, 'message' => 'Ошибка базы данных: ' . $e->getMessage()]);
     exit;
 }
-
-// Validate title using your validation.php
 if (!validateStringLength($title, 3, 255)) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Title должен быть длиной от 3 до 255 символов.']);
     exit;
 }
 
-// Handle image upload
 if (empty($imageFile) || $imageFile['error'] !== UPLOAD_ERR_OK) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Ошибка загрузки изображения или изображение отсутствует.']);
@@ -95,7 +83,7 @@ if (!in_array($mimeType, $allowedTypes)) {
     exit;
 }
 
-$maxFileSize = 5 * 1024 * 1024; // 5MB
+$maxFileSize = 5 * 1024 * 1024;
 if ($imageFile['size'] > $maxFileSize) {
     @unlink($imageFile['tmp_name']);
     http_response_code(400);
@@ -114,7 +102,6 @@ if (!move_uploaded_file($imageFile['tmp_name'], $uploadFilePath)) {
 
 $imagePathForDb = './images/' . $imageFileName;
 
-// Insert into database
 try {
     $stmt = $pdo->prepare("
         INSERT INTO post (user_id, images, title, image_count, edit, likes_count, created_at)
