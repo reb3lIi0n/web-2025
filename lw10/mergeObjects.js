@@ -8,4 +8,4 @@ function mergeObjects(obj1, obj2) {
     }
     return mergedObject;
   }
-  console.log(mergeObjects({ a: 1, b: 2 }, { b: 3, c: 4 }));
+  console.log(mergeObjects({ a: 1, b: 5 }, { b: 3, c: 4 }));
