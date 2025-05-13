@@ -96,3 +96,79 @@
     border-radius: 15%;
     object-fit: cover;
 }
+.post-slider {
+    position: relative;
+    width: 100%;
+    max-width: 474px; /* Размер контейнера соответствует размеру изображения */
+    margin: 0 auto;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 474px; /* Устанавливаем высоту 474px */
+    overflow: hidden;
+}
+
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* Стили для кнопок со стрелками */
+.slider-button {
+    position: absolute;
+    top: 50%; /* Центрируем по вертикали */
+    transform: translateY(-50%); /* Смещаем на 50% высоты кнопки вверх для точного центрирования */
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+    color: white; /* Белый цвет стрелок */
+    border: none;
+    border-radius: 50%; /* Круглая рамка */
+    width: 24px; /* Диаметр круга */
+    height: 24px; /* Диаметр круга */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Размер стрелок */
+    z-index: 1;
+    transition: background 0.3s ease; /* Плавное изменение фона при наведении */
+}
+
+.slider-button:hover {
+    background: rgba(0, 0, 0, 0.7); /* Темнее при наведении */
+}
+
+.slider-button.prev {
+    left: 10px; /* Отступ слева */
+}
+
+.slider-button.next {
+    right: 10px; /* Отступ справа */
+}
+
+/* Индикатор в правом верхнем углу */
+.slider-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Стиль для статичных изображений (одно изображение в посте) */
+.single-post-image {
+    width: 100%;
+    max-width: 474px; /* Размер 474px */
+    height: 474px; /* Фиксированная высота */
+    object-fit: cover; /* Сохраняем пропорции, обрезая лишнее */
+    display: block;
+    margin: 0 auto;
+}

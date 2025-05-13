@@ -26,16 +26,15 @@ foreach ($users as $user) {
     $userMap[$user['id']] = $user['name'];
 }
 
-foreach ($posts as $post) {
-    if (!validateType($post['likes_count'], 'int')) {
-        echo "Ошибка: Количество лайков должно быть целым числом.\n";
-        continue;
-    }
-    if (!validateTimestamp($post['created_at'])) {
-        echo "Ошибка: Неверная дата поста: {$post['created_at']}.\n";
-        continue;
+foreach ($posts as &$post) {
+    if (is_string($post['images'])) {
+        $post['images'] = json_decode($post['images'], true);
+        if (!is_array($post['images'])) {
+            $post['images'] = [$post['images']];
+        }
     }
 }
+unset($post); // Сбрасываем ссылку после цикла
 
 function timeAgo($timestamp) {
     $timeDiff = time() - $timestamp;
