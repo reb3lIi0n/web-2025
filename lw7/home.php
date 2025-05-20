@@ -23,6 +23,20 @@
             <?php endforeach; ?>
         </main>
     </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <div class="modal-slider">
+                <div class="modal-slider-container">
+                    
+                </div>
+                <button class="modal-slider-button prev">❮</button>
+                <button class="modal-slider-button next">❯</button>
+                <span class="modal-slider-indicator">1/1</span>
+            </div>
+        </div>
+    </div>
     <script src="slider.js"></script>
+    <script src="text_toggle.js"></script>
 </body>
 </html>

@@ -172,3 +172,138 @@
     display: block;
     margin: 0 auto;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    background: transparent;
+    padding: 0;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close-modal {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    z-index: 1001;
+}
+
+.modal-slider {
+    position: relative;
+    width: 100%;
+    max-width: 474px; /* Соответствует размеру основного слайдера */
+    margin: 0 auto;
+}
+
+.modal-slider-container {
+    position: relative;
+    width: 474px;
+    height: 474px; /* Соответствует высоте основного слайдера */
+    overflow: hidden;
+}
+
+.modal-slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5); /* Как у slider-button */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px; /* Как у slider-button */
+    height: 24px; /* Как у slider-button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px; /* Как у slider-button */
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+.modal-slider-button:hover {
+    background: rgba(0, 0, 0, 0.7); /* Как у slider-button */
+}
+
+.modal-slider-button.prev {
+    left: 10px; /* Как у slider-button */
+}
+
+.modal-slider-button.next {
+    right: 10px; /* Как у slider-button */
+}
+
+.modal-slider-indicator {
+    position: absolute;
+    bottom: 5px; /* Перемещаем вниз для отличия от основного слайдера */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.post-text {
+    position: relative;
+    overflow: hidden;
+    max-height: 3em; /* Ограничение на 2 строки (при line-height: 1.5em) */
+    line-height: 1.5em;
+}
+
+.post-text-content {
+    display: inline;
+}
+
+.post-text-ellipsis {
+    display: none; /* Скрыто по умолчанию */
+}
+
+.post-text-toggle {
+    display: none; /* Скрыто по умолчанию */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white;
+    border: none;
+    color: blue;
+    cursor: pointer;
+}
+
+.post-text.expanded {
+    max-height: none; /* Полное раскрытие текста */
+}
+
+.post-text.expanded .post-text-ellipsis {
+    display: none; /* Троеточие скрывается при раскрытии */
+}
+
+.post-text.expanded .post-text-toggle {
+    display: inline; /* Кнопка видна */
+}
