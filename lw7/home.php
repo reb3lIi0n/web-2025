@@ -15,7 +15,7 @@
         <div class="sidebar">
             <a href="home.php"><img src="icons/home.png" height="24" width="24" alt="home"></a>
             <a href="profile.php?id=1"><img src="icons/profile.png" height="24" width="24" alt="profile"></a>
-            <a href="#"><img src="icons/new_post.png" height="24" width="24" alt="new post"></a>
+            <a href="create_post.html"><img src="icons/new_post.png" height="24" width="24" alt="new post"></a>
         </div>
         <main class="main-text">
             <?php foreach ($posts as $post): ?>
@@ -37,6 +37,6 @@
         </div>
     </div>
     <script src="slider.js"></script>
-    <script src="text_toggle.js"></script>
+    <script type="module" src="postTextToggle.js"></script>
 </body>
 </html>

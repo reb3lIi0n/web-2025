@@ -13,7 +13,7 @@
         <div class="sidebar">
             <a href="home.php"><img src="icons/home.png" height="24" width="24" alt="home"></a>
             <a href="profile.php?id=1"><img src="icons/profile.png" height="24" width="24" alt="profile"></a>
-            <a href="#"><img src="icons/new_post.png" height="24" width="24" alt="new post"></a>
+            <a href="create_post.html"><img src="icons/new_post.png" height="24" width="24" alt="new post"></a>
         </div>
         <?php include 'templates/profile_template.php'; ?>
     </body>

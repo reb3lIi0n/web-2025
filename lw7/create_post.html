@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание поста</title>
+    <title>Новый пост</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
     <link href="styles/create_post_style.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="sidebar">
-        <button id="openModal">+</button>
-    </div>
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModal">&times;</span>
-            <h2>Новый пост</h2>
-            <div class="image-area" id="imageArea">
-                <button class="add-photo-black" id="addPhotoBlack">Добавить фото</button>
-            </div>
-            <button class="add-photo-blue" id="addPhotoBlue">Добавить фото</button>
-            <input type="text" class="post-text" id="postText" placeholder="Добавьте подпись">
-            <button class="share-button" id="shareButton" disabled>Поделиться</button>
+    <div class="new-post">
+        <div class="new-post__header">
+            <a href="home.php" class="new-post__back">&lt;</a>
+            <h1 class="new-post__title">Новый пост</h1>
         </div>
+        <div class="new-post__image-area">
+            <div class="new-post__slider" id="slider"></div>
+            <button class="new-post__add-photo-black" id="addPhotoBlack">Добавить фото</button>
+            <button class="new-post__slider-button prev hidden" id="prev">&lt;</button>
+            <button class="new-post__slider-button next hidden" id="next">&gt;</button>
+            <div class="new-post__slider-indicator hidden" id="indicator">1/1</div>
+        </div>
+        <button class="new-post__add-photo-blue" id="addPhotoBlue">Добавить фото</button>
+        <textarea class="new-post__caption" id="caption" placeholder="Добавьте подпись..."></textarea>
+        <button class="new-post__share" id="share" disabled>Поделиться</button>
+        <input type="file" id="fileInput" accept="image/*" multiple class="hidden">
     </div>
+    <script src="new_post.js"></script>
 </body>
-
 </html>

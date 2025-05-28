@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const sliders = document.querySelectorAll('.post-slider');
     const singlePostImages = document.querySelectorAll('.single-post-image-container');
 
-    // Функция отображения изображения
     function showImage(images, index, indicator) {
         images.forEach((img, i) => {
             img.style.display = i === index ? 'block' : 'none';
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         indicator.textContent = `${index + 1}/${images.length}`;
     }
 
-    // Логика основного слайдера (без изменений)
     sliders.forEach(slider => {
         const images = slider.querySelectorAll('.slider-image');
         const prevButton = slider.querySelector('.slider-button.prev');
@@ -36,20 +34,17 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButton.addEventListener('click', nextImage);
         prevButton.addEventListener('click', prevImage);
 
-        // Открытие модального окна при клике на слайдер
         slider.querySelector('.slider-container').addEventListener('click', () => {
             openModal(slider.getAttribute('data-images'), currentIndex);
         });
     });
 
-    // Открытие модального окна для одиночных изображений
     singlePostImages.forEach(container => {
         container.addEventListener('click', () => {
             openModal(container.getAttribute('data-images'), 0);
         });
     });
 
-    // Логика модального окна
     function openModal(imagesData, startIndex) {
     const modal = document.getElementById('modal');
     const modalContainer = modal.querySelector('.modal-slider-container');
@@ -118,19 +113,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     modal.style.display = 'flex';
 
-    // Функция для закрытия модального окна
     const closeModalHandler = () => {
         modal.style.display = 'none';
     };
 
-    // Добавляем обработчик для кнопки закрытия
     const closeModal = document.querySelector('.close-modal');
     if (closeModal) {
         closeModal.removeEventListener('click', closeModalHandler);
         closeModal.addEventListener('click', closeModalHandler);
     }
 
-    // Добавляем обработчик для клавиши Esc
     const handleEsc = (event) => {
         if (event.keyCode === 27) {
             closeModalHandler();
@@ -138,11 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Привязываем обработчик Esc
     document.addEventListener('keydown', handleEsc);
 }
 
-// Пример вызова функции при клике
 document.querySelectorAll('.post-slider').forEach(slider => {
     slider.addEventListener('click', () => {
         const imagesData = slider.getAttribute('data-images');

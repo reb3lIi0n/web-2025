@@ -99,14 +99,14 @@
 .post-slider {
     position: relative;
     width: 100%;
-    max-width: 474px; /* Размер контейнера соответствует размеру изображения */
+    max-width: 474px;
     margin: 0 auto;
 }
 
 .slider-container {
     position: relative;
     width: 100%;
-    height: 474px; /* Устанавливаем высоту 474px */
+    height: 474px;
     overflow: hidden;
 }
 
@@ -120,38 +120,31 @@
     display: none;
 }
 
-/* Стили для кнопок со стрелками */
 .slider-button {
     position: absolute;
-    top: 50%; /* Центрируем по вертикали */
-    transform: translateY(-50%); /* Смещаем на 50% высоты кнопки вверх для точного центрирования */
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-    color: white; /* Белый цвет стрелок */
+    top: 50%; 
+    transform: translateY(-50%); 
+    background: rgba(0, 0, 0, 0.5); 
+    color: white; 
     border: none;
-    border-radius: 50%; /* Круглая рамка */
-    width: 24px; /* Диаметр круга */
-    height: 24px; /* Диаметр круга */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px; /* Размер стрелок */
-    z-index: 1;
-    transition: background 0.3s ease; /* Плавное изменение фона при наведении */
+    border-radius: 50%; 
+    width: 24px; 
+    height: 24px;
+    font-size: 16px;
 }
 
 .slider-button:hover {
-    background: rgba(0, 0, 0, 0.7); /* Темнее при наведении */
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .slider-button.prev {
-    left: 10px; /* Отступ слева */
+    left: 10px;
 }
 
 .slider-button.next {
-    right: 10px; /* Отступ справа */
+    right: 10px;
 }
 
-/* Индикатор в правом верхнем углу */
 .slider-indicator {
     position: absolute;
     top: 5px;
@@ -163,24 +156,24 @@
     font-size: 14px;
 }
 
-/* Стиль для статичных изображений (одно изображение в посте) */
 .single-post-image {
     width: 100%;
-    max-width: 474px; /* Размер 474px */
-    height: 474px; /* Фиксированная высота */
-    object-fit: cover; /* Сохраняем пропорции, обрезая лишнее */
+    max-width: 474px;
+    height: 474px; 
+    object-fit: cover;
     display: block;
     margin: 0 auto;
 }
 
 .modal {
+    font-family: "Golos Text", sans-serif;
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: #666666;
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -208,14 +201,14 @@
 .modal-slider {
     position: relative;
     width: 100%;
-    max-width: 474px; /* Соответствует размеру основного слайдера */
+    max-width: 474px;
     margin: 0 auto;
 }
 
 .modal-slider-container {
     position: relative;
     width: 474px;
-    height: 474px; /* Соответствует высоте основного слайдера */
+    height: 474px;
     overflow: hidden;
 }
 
@@ -232,78 +225,65 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5); /* Как у slider-button */
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 24px; /* Как у slider-button */
-    height: 24px; /* Как у slider-button */
+    width: 24px;
+    height: 24px; 
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 16px; /* Как у slider-button */
+    font-size: 16px; 
     z-index: 1;
     transition: background 0.3s ease;
 }
 
 .modal-slider-button:hover {
-    background: rgba(0, 0, 0, 0.7); /* Как у slider-button */
+    background: rgba(0, 0, 0, 0.7); 
 }
 
 .modal-slider-button.prev {
-    left: 10px; /* Как у slider-button */
+    left: 10px; 
 }
 
 .modal-slider-button.next {
-    right: 10px; /* Как у slider-button */
+    right: 10px; 
 }
 
 .modal-slider-indicator {
     position: absolute;
-    bottom: 5px; /* Перемещаем вниз для отличия от основного слайдера */
+    bottom: -35px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: #FFFFFF;
     padding: 3px 8px;
     border-radius: 5px;
     font-size: 14px;
 }
 .post-text {
-    position: relative;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #000000;
     overflow: hidden;
-    max-height: 3em; /* Ограничение на 2 строки (при line-height: 1.5em) */
-    line-height: 1.5em;
-}
-
-.post-text-content {
-    display: inline;
-}
-
-.post-text-ellipsis {
-    display: none; /* Скрыто по умолчанию */
-}
-
-.post-text-toggle {
-    display: none; /* Скрыто по умолчанию */
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: white;
-    border: none;
-    color: blue;
-    cursor: pointer;
+    max-height: 3em;
 }
 
 .post-text.expanded {
-    max-height: none; /* Полное раскрытие текста */
+    max-height: none;
 }
 
-.post-text.expanded .post-text-ellipsis {
-    display: none; /* Троеточие скрывается при раскрытии */
+.post-text-toggle {
+    display: none;
+    margin-top: 4px;
+    color: #666666;
+    text-decoration: underline;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .post-text.expanded .post-text-toggle {
-    display: inline; /* Кнопка видна */
+    display: inline;
 }

@@ -34,7 +34,7 @@ foreach ($posts as &$post) {
         }
     }
 }
-unset($post); // Сбрасываем ссылку после цикла
+unset($post);
 
 function timeAgo($timestamp) {
     $timeDiff = time() - $timestamp;
@@ -59,5 +59,9 @@ function pluralForm($number, $form1, $form2, $form5) {
     if ($n1 > 1 && $n1 < 5) return $form2;
     if ($n1 == 1) return $form1;
     return $form5;
+}
+function displayPostContent($post) {
+    $content = $post['title'] ?? '';
+    return htmlspecialchars($content);
 }
 ?>

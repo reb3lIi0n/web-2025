@@ -36,12 +36,12 @@
     <p class="likes-count">
         <img src="icons/like.png" height="16" width="18" alt="like"> <?= $post['likes_count'] ?>
     </p>
-    <div class="post">
-        <p class="post-text">
-            <span class="post-text-content"><?= $post['title'] ?></span>
-            <span class="post-text-ellipsis">...</span>
-            <button class="post-text-toggle">ещё</button>
-        </p>
+    <?php
+    $fullPostText = htmlspecialchars(displayPostContent($post));
+    ?>
+    <div class="post__description">
+        <p class="post-text" data-full-text="<?= $fullPostText ?>"><?= $fullPostText ?></p>
+        <a href="#" class="post-text-toggle">ещё</a>
     </div>
 
     <p class="post-time"><?= timeAgo($post['created_at']) ?></p>
