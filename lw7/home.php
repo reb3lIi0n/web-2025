@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&display=swap" rel="stylesheet">
     <link href="styles/home_style.css" rel="stylesheet">
 </head>
+
 <body>
     <?php include 'php/data.php'; ?>
     <div class="page">
@@ -28,7 +30,7 @@
             <span class="close-modal">×</span>
             <div class="modal-slider">
                 <div class="modal-slider-container">
-                    
+
                 </div>
                 <button class="modal-slider-button prev">❮</button>
                 <button class="modal-slider-button next">❯</button>
@@ -39,4 +41,5 @@
     <script src="slider.js"></script>
     <script type="module" src="postTextToggle.js"></script>
 </body>
+
 </html>

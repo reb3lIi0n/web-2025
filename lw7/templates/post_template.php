@@ -14,7 +14,7 @@
         <?php endif; ?>
     </div>
     <div class="post-image">
-        <?php if (is_array($post['images']) && count($post['images']) > 1): ?>
+        <?php if (count($post['images']) > 1): ?>
             <?php $images = (!empty($post['images'])) ? $post['images'] : [];?>
             <div class="post-slider" data-images='<?= json_encode($images) ?>'>
                 <div class="slider-container">
